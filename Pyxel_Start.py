@@ -4,6 +4,9 @@ import pyxel
 class App:
     def __init__(self):
         pyxel.init(160, 160, caption='Hello Pyxel')
+
+        self.pyxel_y=0
+
         pyxel.image(0).load(0, 0, 'assets/Ant.jpeg')
         pyxel.sound(0).set(
             'e2e2c2g1 g1g1c2e2 d2d2d2g2 g2g2rr'
@@ -58,12 +61,16 @@ class App:
             self.text = "Test Texg"
         if pyxel.btn(pyxel.KEY_LEFT):
             self.text = "ImAnAnt Cool new game!"
+        if pyxel.btn(pyxel.KEY_UP):
+            self.pyxel_y+=1
+        if pyxel.btn(pyxel.KEY_DOWN):
+            self.pyxel_y-=1
         
 
     def draw(self):
         pyxel.cls(0)
         pyxel.text(40, 41,  self.text, pyxel.frame_count % 16)
-        pyxel.blt(61, 66, 0, 0, 0, 70, 70)
+        pyxel.blt(61, self.pyxel_y, 0, 0, 0, 70, 70)
 
 
 App()
