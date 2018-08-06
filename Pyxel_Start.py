@@ -30,7 +30,8 @@ class App:
 
         pyxel.sound(4).set('e2e2c2g1 e2e2c2g1 f0ra4r f0f0a4r', 'n',
                            '6622 6622 6622 6422', 'f', 25)
-        self.text="ImAnAnt Cool new game!"
+        self.title="ImAnAnt Cool new game!"
+        self.subTitle="A game created by Antony"
         self.is_playing = [True] * 3
 
         self.play_music(True, True, True)
@@ -60,27 +61,36 @@ class App:
         if pyxel.btnp(pyxel.KEY_Q):
             pyxel.quit()
         if pyxel.btn(pyxel.KEY_RIGHT):
-            self.text = "Test Texg"
+            self.title = "Test Text"
             self.pyxel_x+=1
 
         if pyxel.btn(pyxel.KEY_LEFT):
-            self.text = "ImAnAnt Cool new game!"
+            self.title = "ImAnAnt Cool new game!"
             self.pyxel_x-=1
 
         if pyxel.btn(pyxel.KEY_UP):
             self.pyxel_y+=1
         if pyxel.btn(pyxel.KEY_DOWN):
-            self.pyxel_y-=1
+            if self.pyxel_y<=60:
+                self.pyxel_y-=1
         if pyxel.btn(pyxel.KEY_SPACE):
-            self.pyxel_y-=20
+            if self.pyxel_y>=60:
+                self.pyxel_y-=60
         
         if self.pyxel_y<=60:
-            self.pyxel_y+=6
+            self.pyxel_y+=4
+        
+        if pyxel.btn(pyxel.KEY_S):
+            self.text="jokes dont know how to do that yet"
         
 
     def draw(self):
         pyxel.cls(0)
-        pyxel.text(40, 41,  self.text, pyxel.frame_count % 16)
+        pyxel.text(40, 41,  self.title, pyxel.frame_count % 16)
+        pyxel.text(40, 61,  self.subTitle, pyxel.frame_count % 16)
+        pyxel.text(40, 81,  "Press S to Start", pyxel.frame_count % 16)
+
+
         pyxel.blt(self.pyxel_x, self.pyxel_y, 0, 0, 0, 70, 70)
 
 
